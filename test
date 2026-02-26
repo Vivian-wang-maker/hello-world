@@ -1,29 +1,321 @@
-ecutor.py:822]   File "/usr/local/lib/python3.12/site-packages/torch/_ops.py", line 1255, in __call__
-(Worker_DP3_EP3 pid=615610) ERROR 02-26 12:02:19 [multiproc_executor.py:822]     return self._op(*args, **kwargs)
-(Worker_DP3_EP3 pid=615610) ERROR 02-26 12:02:19 [multiproc_executor.py:822]            ^^^^^^^^^^^^^^^^^^^^^^^^^
-(Worker_DP3_EP3 pid=615610) ERROR 02-26 12:02:19 [multiproc_executor.py:822] RuntimeError: operator():build/CMakeFiles/torch_npu.dir/compiler_depend.ts:162 NPU function error: call aclnnMoeDistributeDispatchV4 failed, error code is 561000
-(Worker_DP3_EP3 pid=615610) ERROR 02-26 12:02:19 [multiproc_executor.py:822] [ERROR] 2026-02-26-12:02:19 (PID:615610, Device:0, RankID:-1) ERR00100 PTA call acl api failed.
-(Worker_DP3_EP3 pid=615610) ERROR 02-26 12:02:19 [multiproc_executor.py:822] [PID: 615610] 2026-02-26-12:02:19.517.932 Communication_Error_Get_Socket(EI0006): Getting socket times out. Reason: 
-(Worker_DP3_EP3 pid=615610) ERROR 02-26 12:02:19 [multiproc_executor.py:822] TRANSPORT DETECT EVENT[1]:Rank[7.150.11.4/11]: srcRank[7.150.11.4/11] connect destRank[7.150.11.4/8] fail.
-(Worker_DP3_EP3 pid=615610) ERROR 02-26 12:02:19 [multiproc_executor.py:822] The error above was caused by a failure at the site in the cluster where the events happened.Please confirm whether the link between SRCRANK and DSTRANK or the DSTRANK process is healthy.
-(Worker_DP3_EP3 pid=615610) ERROR 02-26 12:02:19 [multiproc_executor.py:822] NOTE: The detection results are only used to assist in locating the problem and may not represent the actual fault site in some complex scenarios. Please continue to analyze and confirm based on the current detected fault site
-(Worker_DP3_EP3 pid=615610) ERROR 02-26 12:02:19 [multiproc_executor.py:822]         Solution: 1. Check the rank service processes with other errors or no errors in the cluster.2. If this error is reported for all NPUs, check whether the time difference between the earliest and latest errors is greater than the connect timeout interval (120s by default). If so, adjust the timeout interval by using the HCCL_CONNECT_TIMEOUT environment variable.3. Check the connectivity of the communication link between nodes. (For example, run the 'hccn_tool -i $devid -tls -g' command to check the TLS status of each NPU).
-(Worker_DP3_EP3 pid=615610) ERROR 02-26 12:02:19 [multiproc_executor.py:822]         TraceBack (most recent call last):
-(Worker_DP3_EP3 pid=615610) ERROR 02-26 12:02:19 [multiproc_executor.py:822]         get device uuid failed, deviceId = 0, runtime result = 207000[FUNC:ReportCallError][FILE:log_inner.cpp][LINE:148]
-(Worker_DP3_EP3 pid=615610) ERROR 02-26 12:02:19 [multiproc_executor.py:822]         Getting socket times out. Reason: 
-(Worker_DP3_EP3 pid=615610) ERROR 02-26 12:02:19 [multiproc_executor.py:822] TRANSPORT DETECT EVENT[1]:Rank[7.150.11.4/11]: srcRank[7.150.11.4/11] connect destRank[7.150.11.4/8] fail.
-(Worker_DP3_EP3 pid=615610) ERROR 02-26 12:02:19 [multiproc_executor.py:822] The error above was caused by a failure at the site in the cluster where the events happened.Please confirm whether the link between SRCRANK and DSTRANK or the DSTRANK process is healthy.
-(Worker_DP3_EP3 pid=615610) ERROR 02-26 12:02:19 [multiproc_executor.py:822] NOTE: The detection results are only used to assist in locating the problem and may not represent the actual fault site in some complex scenarios. Please continue to analyze and confirm based on the current detected fault site
-(Worker_DP3_EP3 pid=615610) ERROR 02-26 12:02:19 [multiproc_executor.py:822]         Nnopbase fails to invoke the HcclAllocComResourceByTiling function of the hccl module. ret = 9, comm = 0x7ee7c140.
-(Worker_DP3_EP3 pid=615610) ERROR 02-26 12:02:19 [multiproc_executor.py:822]         Check nnopbase::IndvHcclWrapper::GetInstance().HcclAllocComResourceByTiling(commHandle, stream, ((NnopbaseTilingData *)executor->args->tilingInfo.tilingData)->GetData(), &contextAddr) failed
-(Worker_DP3_EP3 pid=615610) ERROR 02-26 12:02:19 [multiproc_executor.py:822]         Check NnopbaseGetHcomResource(executor, stream) failed
-(Worker_DP3_EP3 pid=615610) ERROR 02-26 12:02:19 [multiproc_executor.py:822]         Check NnopbaseExecutorGetMc2Num(executor, stream, &argsAddr, &mc2Num) failed
-(Worker_DP3_EP3 pid=615610) ERROR 02-26 12:02:19 [multiproc_executor.py:822]         Check NnopbaseExecutorPrepareParamsExt(executor, stream) failed
-(Worker_DP3_EP3 pid=615610) ERROR 02-26 12:02:19 [multiproc_executor.py:822]         Check NnopbaseRunWithWorkspace(executor, stream, workspace, workspaceSize) failed
-(Worker_DP3_EP3 pid=615610) ERROR 02-26 12:02:19 [multiproc_executor.py:822] 
-(Worker_DP3_EP3 pid=615610) ERROR 02-26 12:02:19 [multiproc_executor.py:822] Traceback (most recent call last):
-(Worker_DP3_EP3 pid=615610) ERROR 02-26 12:02:19 [multiproc_executor.py:822]   File "/opt/vllm/vllm/v1/executor/multiproc_executor.py", line 817, in worker_busy_loop
-(Worker_DP3_EP3 pid=615610) ERROR 02-26 12:02:19 [multiproc_executor.py:822]     output = func(*args, **kwargs)
-(Worker_DP3_EP3 pid=615610) ERROR 02-26 12:02:19 [multiproc_executor.py:822]              ^^^^^^^^^^^^^^^^^^^^^
-(Worker_DP3_EP3 pid=615610) ERROR 02-26 12:02:19 [multiproc_executor.py:822]   File "/data/w00961555/PanguInferPower-pangu_v2_dev/src/omni_npu/worker/npu_worker.py", line 214, in execute_dummy_batch
-(Worker_DP3_EP3 pid=615610) ERROR 02-26 12:02:19 [multiproc_executor.py:822]
+ast.py:501] No available shared memory broadcast block found in 60 seconds. This typically happens when some processes are hanging or doing some time-consuming work (e.g. compilation, weight/kv cache quantization).
+(EngineCore_DP1 pid=643436) INFO 02-26 15:39:26 [shm_broadcast.py:501] No available shared memory broadcast block found in 60 seconds. This typically happens when some processes are hanging or doing some time-consuming work (e.g. compilation, weight/kv cache quantization).
+(EngineCore_DP0 pid=643435) INFO 02-26 15:39:26 [shm_broadcast.py:501] No available shared memory broadcast block found in 60 seconds. This typically happens when some processes are hanging or doing some time-consuming work (e.g. compilation, weight/kv cache quantization).
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822] WorkerProc hit an exception.
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822] Traceback (most recent call last):
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]   File "/opt/vllm/vllm/v1/executor/multiproc_executor.py", line 817, in worker_busy_loop
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]     output = func(*args, **kwargs)
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]              ^^^^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]   File "/data/w00961555/PanguInferPower-pangu_v2_dev/src/omni_npu/worker/npu_worker.py", line 214, in execute_dummy_batch
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]     self.model_runner._dummy_run(1, uniform_decode=True, force_attention=True)
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]   File "/usr/local/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 120, in decorate_context
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]     return func(*args, **kwargs)
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]            ^^^^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]   File "/data/w00961555/PanguInferPower-pangu_v2_dev/src/omni_npu/worker/npu_model_runner.py", line 474, in _dummy_run
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]     outputs = self.model(
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]               ^^^^^^^^^^^
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]   File "/usr/local/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]     return self._call_impl(*args, **kwargs)
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]   File "/usr/local/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]     return forward_call(*args, **kwargs)
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]   File "/data/w00961555/PanguInferPower-pangu_v2_dev/src/omni_npu/v1/models/pangu/pangu_v2_moe.py", line 616, in forward
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]     hidden_states = self.model(
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]                     ^^^^^^^^^^^
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]   File "/data/w00961555/PanguInferPower-pangu_v2_dev/src/omni_npu/compilation/decorators.py", line 67, in _new_call
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]     hit, retval = _bypass_prefill(self, *args, **kwargs)
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]   File "/data/w00961555/PanguInferPower-pangu_v2_dev/src/omni_npu/compilation/decorators.py", line 61, in _bypass_prefill
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]     return True, self.forward(*args, **kwargs)
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]   File "/data/w00961555/PanguInferPower-pangu_v2_dev/src/omni_npu/v1/models/pangu/pangu_v2_moe.py", line 519, in forward
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]     hidden_states = self.layers[i](
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]                     ^^^^^^^^^^^^^^^
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]   File "/usr/local/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]     return self._call_impl(*args, **kwargs)
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]   File "/usr/local/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]     return forward_call(*args, **kwargs)
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]   File "/data/w00961555/PanguInferPower-pangu_v2_dev/src/omni_npu/v1/models/pangu/pangu_v2_moe.py", line 413, in forward
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]     hidden_states = self.mlp(
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]                     ^^^^^^^^^
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]   File "/usr/local/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]     return self._call_impl(*args, **kwargs)
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]   File "/usr/local/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]     return forward_call(*args, **kwargs)
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]   File "/data/w00961555/PanguInferPower-pangu_v2_dev/src/omni_npu/v1/models/pangu/pangu_v2_moe.py", line 244, in forward
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]     shared_output, final_hidden_states = self.experts(
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]                                          ^^^^^^^^^^^^^
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]   File "/usr/local/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]     return self._call_impl(*args, **kwargs)
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]   File "/usr/local/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]     return forward_call(*args, **kwargs)
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]   File "/opt/vllm/vllm/model_executor/layers/fused_moe/shared_fused_moe.py", line 84, in forward
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]     shared_out, fused_out = super().forward(
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]                             ^^^^^^^^^^^^^^^^
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]   File "/opt/vllm/vllm/model_executor/custom_op.py", line 46, in forward
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]     return self._forward_method(*args, **kwargs)
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]   File "/opt/vllm/vllm/model_executor/custom_op.py", line 81, in forward_oot
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]     return self.forward_native(*args, **kwargs)
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]   File "/opt/vllm/vllm/model_executor/layers/fused_moe/layer.py", line 1734, in forward_native
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]     shared_output, fused_output = torch.ops.vllm.moe_forward_shared(
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]   File "/usr/local/lib/python3.12/site-packages/torch/_ops.py", line 1255, in __call__
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]     return self._op(*args, **kwargs)
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]            ^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]   File "/opt/vllm/vllm/model_executor/layers/fused_moe/layer.py", line 2129, in moe_forward_shared
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]     return self.forward_impl(hidden_states, router_logits)
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]   File "/opt/vllm/vllm/model_executor/layers/fused_moe/layer.py", line 1960, in forward_impl
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]     final_hidden_states = self.quant_method.apply(
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]                           ^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]   File "/data/w00961555/PanguInferPower-pangu_v2_dev/src/omni_npu/layers/fused_moe/layer.py", line 268, in apply
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]     return self.old_quant_method.apply(*args, **kwargs)
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]   File "/opt/vllm/vllm/model_executor/layers/fused_moe/unquantized_fused_moe_method.py", line 298, in apply
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]     return self.forward(
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]            ^^^^^^^^^^^^^
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]   File "/opt/vllm/vllm/model_executor/custom_op.py", line 46, in forward
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]     return self._forward_method(*args, **kwargs)
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]   File "/data/w00961555/PanguInferPower-pangu_v2_dev/src/omni_npu/layers/fused_moe/layer.py", line 102, in forward_oot
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]     output = self.fused_experts(
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]              ^^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]   File "/usr/local/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]     return self._call_impl(*args, **kwargs)
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]   File "/usr/local/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]     return forward_call(*args, **kwargs)
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]   File "/opt/vllm/vllm/model_executor/layers/fused_moe/modular_kernel.py", line 1298, in forward
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]     a1q, a1q_scale, expert_tokens_meta, topk_ids, topk_weights = self._prepare(
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]                                                                  ^^^^^^^^^^^^^^
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]   File "/opt/vllm/vllm/model_executor/layers/fused_moe/modular_kernel.py", line 996, in _prepare
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]     ) = self.prepare_finalize.prepare(
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]   File "/data/w00961555/PanguInferPower-pangu_v2_dev/src/omni_npu/layers/fused_moe/npu_moe_prepare_finalize.py", line 87, in prepare
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]     output = torch_npu.npu_moe_distribute_dispatch_v2(**kwargs)
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]   File "/usr/local/lib/python3.12/site-packages/torch/_ops.py", line 1255, in __call__
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]     return self._op(*args, **kwargs)
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]            ^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822] RuntimeError: operator():build/CMakeFiles/torch_npu.dir/compiler_depend.ts:162 NPU function error: call aclnnMoeDistributeDispatchV4 failed, error code is 561000
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822] [ERROR] 2026-02-26-15:40:18 (PID:643853, Device:3, RankID:-1) ERR00100 PTA call acl api failed.
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822] [PID: 643853] 2026-02-26-15:40:18.195.406 Communication_Error_Get_Socket(EI0006): Getting socket times out. Reason: 
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822] TRANSPORT DETECT EVENT[1]:Rank[7.150.11.4/15]: srcRank[7.150.11.4/15] connect destRank[7.150.11.4/11] fail.
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822] TRANSPORT DETECT EVENT[2]:Rank[7.150.11.4/15]: srcRank[7.150.11.4/15] connect destRank[7.150.11.4/10] fail.
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822] TRANSPORT DETECT EVENT[3]:Rank[7.150.11.4/15]: srcRank[7.150.11.4/15] connect destRank[7.150.11.4/9] fail.
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822] TRANSPORT DETECT EVENT[4]:Rank[7.150.11.4/15]: srcRank[7.150.11.4/15] connect destRank[7.150.11.4/8] fail.
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822] The error above was caused by a failure at the site in the cluster where the events happened.Please confirm whether the link between SRCRANK and DSTRANK or the DSTRANK process is healthy.
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822] NOTE: The detection results are only used to assist in locating the problem and may not represent the actual fault site in some complex scenarios. Please continue to analyze and confirm based on the current detected fault site
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]         Solution: 1. Check the rank service processes with other errors or no errors in the cluster.2. If this error is reported for all NPUs, check whether the time difference between the earliest and latest errors is greater than the connect timeout interval (120s by default). If so, adjust the timeout interval by using the HCCL_CONNECT_TIMEOUT environment variable.3. Check the connectivity of the communication link between nodes. (For example, run the 'hccn_tool -i $devid -tls -g' command to check the TLS status of each NPU).
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]         TraceBack (most recent call last):
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]         get device uuid failed, deviceId = 3, runtime result = 207000[FUNC:ReportCallError][FILE:log_inner.cpp][LINE:148]
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]         Getting socket times out. Reason: 
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822] TRANSPORT DETECT EVENT[1]:Rank[7.150.11.4/15]: srcRank[7.150.11.4/15] connect destRank[7.150.11.4/11] fail.
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822] TRANSPORT DETECT EVENT[2]:Rank[7.150.11.4/15]: srcRank[7.150.11.4/15] connect destRank[7.150.11.4/10] fail.
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822] TRANSPORT DETECT EVENT[3]:Rank[7.150.11.4/15]: srcRank[7.150.11.4/15] connect destRank[7.150.11.4/9] fail.
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822] TRANSPORT DETECT EVENT[4]:Rank[7.150.11.4/15]: srcRank[7.150.11.4/15] connect destRank[7.150.11.4/8] fail.
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822] The error above was caused by a failure at the site in the cluster where the events happened.Please confirm whether the link between SRCRANK and DSTRANK or the DSTRANK process is healthy.
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822] NOTE: The detection results are only used to assist in locating the problem and may not represent the actual fault site in some complex scenarios. Please continue to analyze and confirm based on the current detected fault site
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]         Nnopbase fails to invoke the HcclAllocComResourceByTiling function of the hccl module. ret = 9, comm = 0x4766d230.
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]         Check nnopbase::IndvHcclWrapper::GetInstance().HcclAllocComResourceByTiling(commHandle, stream, ((NnopbaseTilingData *)executor->args->tilingInfo.tilingData)->GetData(), &contextAddr) failed
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]         Check NnopbaseGetHcomResource(executor, stream) failed
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]         Check NnopbaseExecutorGetMc2Num(executor, stream, &argsAddr, &mc2Num) failed
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]         Check NnopbaseExecutorPrepareParamsExt(executor, stream) failed
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]         Check NnopbaseRunWithWorkspace(executor, stream, workspace, workspaceSize) failed
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822] 
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822] Traceback (most recent call last):
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]   File "/opt/vllm/vllm/v1/executor/multiproc_executor.py", line 817, in worker_busy_loop
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]     output = func(*args, **kwargs)
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]              ^^^^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]   File "/data/w00961555/PanguInferPower-pangu_v2_dev/src/omni_npu/worker/npu_worker.py", line 214, in execute_dummy_batch
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]     self.model_runner._dummy_run(1, uniform_decode=True, force_attention=True)
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]   File "/usr/local/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 120, in decorate_context
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]     return func(*args, **kwargs)
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]            ^^^^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]   File "/data/w00961555/PanguInferPower-pangu_v2_dev/src/omni_npu/worker/npu_model_runner.py", line 474, in _dummy_run
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]     outputs = self.model(
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]               ^^^^^^^^^^^
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]   File "/usr/local/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]     return self._call_impl(*args, **kwargs)
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]   File "/usr/local/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]     return forward_call(*args, **kwargs)
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]   File "/data/w00961555/PanguInferPower-pangu_v2_dev/src/omni_npu/v1/models/pangu/pangu_v2_moe.py", line 616, in forward
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]     hidden_states = self.model(
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]                     ^^^^^^^^^^^
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]   File "/data/w00961555/PanguInferPower-pangu_v2_dev/src/omni_npu/compilation/decorators.py", line 67, in _new_call
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]     hit, retval = _bypass_prefill(self, *args, **kwargs)
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]   File "/data/w00961555/PanguInferPower-pangu_v2_dev/src/omni_npu/compilation/decorators.py", line 61, in _bypass_prefill
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]     return True, self.forward(*args, **kwargs)
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]   File "/data/w00961555/PanguInferPower-pangu_v2_dev/src/omni_npu/v1/models/pangu/pangu_v2_moe.py", line 519, in forward
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]     hidden_states = self.layers[i](
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]                     ^^^^^^^^^^^^^^^
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]   File "/usr/local/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]     return self._call_impl(*args, **kwargs)
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]   File "/usr/local/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]     return forward_call(*args, **kwargs)
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]   File "/data/w00961555/PanguInferPower-pangu_v2_dev/src/omni_npu/v1/models/pangu/pangu_v2_moe.py", line 413, in forward
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]     hidden_states = self.mlp(
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]                     ^^^^^^^^^
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]   File "/usr/local/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]     return self._call_impl(*args, **kwargs)
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]   File "/usr/local/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]     return forward_call(*args, **kwargs)
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]   File "/data/w00961555/PanguInferPower-pangu_v2_dev/src/omni_npu/v1/models/pangu/pangu_v2_moe.py", line 244, in forward
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]     shared_output, final_hidden_states = self.experts(
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]                                          ^^^^^^^^^^^^^
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]   File "/usr/local/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]     return self._call_impl(*args, **kwargs)
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]   File "/usr/local/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]     return forward_call(*args, **kwargs)
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]   File "/opt/vllm/vllm/model_executor/layers/fused_moe/shared_fused_moe.py", line 84, in forward
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]     shared_out, fused_out = super().forward(
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]                             ^^^^^^^^^^^^^^^^
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]   File "/opt/vllm/vllm/model_executor/custom_op.py", line 46, in forward
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]     return self._forward_method(*args, **kwargs)
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]   File "/opt/vllm/vllm/model_executor/custom_op.py", line 81, in forward_oot
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]     return self.forward_native(*args, **kwargs)
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]   File "/opt/vllm/vllm/model_executor/layers/fused_moe/layer.py", line 1734, in forward_native
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]     shared_output, fused_output = torch.ops.vllm.moe_forward_shared(
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]   File "/usr/local/lib/python3.12/site-packages/torch/_ops.py", line 1255, in __call__
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]     return self._op(*args, **kwargs)
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]            ^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]   File "/opt/vllm/vllm/model_executor/layers/fused_moe/layer.py", line 2129, in moe_forward_shared
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]     return self.forward_impl(hidden_states, router_logits)
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]   File "/opt/vllm/vllm/model_executor/layers/fused_moe/layer.py", line 1960, in forward_impl
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]     final_hidden_states = self.quant_method.apply(
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]                           ^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]   File "/data/w00961555/PanguInferPower-pangu_v2_dev/src/omni_npu/layers/fused_moe/layer.py", line 268, in apply
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]     return self.old_quant_method.apply(*args, **kwargs)
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]   File "/opt/vllm/vllm/model_executor/layers/fused_moe/unquantized_fused_moe_method.py", line 298, in apply
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]     return self.forward(
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]            ^^^^^^^^^^^^^
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]   File "/opt/vllm/vllm/model_executor/custom_op.py", line 46, in forward
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]     return self._forward_method(*args, **kwargs)
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]   File "/data/w00961555/PanguInferPower-pangu_v2_dev/src/omni_npu/layers/fused_moe/layer.py", line 102, in forward_oot
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]     output = self.fused_experts(
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]              ^^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]   File "/usr/local/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]     return self._call_impl(*args, **kwargs)
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]   File "/usr/local/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]     return forward_call(*args, **kwargs)
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]   File "/opt/vllm/vllm/model_executor/layers/fused_moe/modular_kernel.py", line 1298, in forward
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]     a1q, a1q_scale, expert_tokens_meta, topk_ids, topk_weights = self._prepare(
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]                                                                  ^^^^^^^^^^^^^^
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]   File "/opt/vllm/vllm/model_executor/layers/fused_moe/modular_kernel.py", line 996, in _prepare
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]     ) = self.prepare_finalize.prepare(
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]   File "/data/w00961555/PanguInferPower-pangu_v2_dev/src/omni_npu/layers/fused_moe/npu_moe_prepare_finalize.py", line 87, in prepare
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]     output = torch_npu.npu_moe_distribute_dispatch_v2(**kwargs)
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]   File "/usr/local/lib/python3.12/site-packages/torch/_ops.py", line 1255, in __call__
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]     return self._op(*args, **kwargs)
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]            ^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822] RuntimeError: operator():build/CMakeFiles/torch_npu.dir/compiler_depend.ts:162 NPU function error: call aclnnMoeDistributeDispatchV4 failed, error code is 561000
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822] [ERROR] 2026-02-26-15:40:18 (PID:643853, Device:3, RankID:-1) ERR00100 PTA call acl api failed.
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822] [PID: 643853] 2026-02-26-15:40:18.195.406 Communication_Error_Get_Socket(EI0006): Getting socket times out. Reason: 
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822] TRANSPORT DETECT EVENT[1]:Rank[7.150.11.4/15]: srcRank[7.150.11.4/15] connect destRank[7.150.11.4/11] fail.
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822] TRANSPORT DETECT EVENT[2]:Rank[7.150.11.4/15]: srcRank[7.150.11.4/15] connect destRank[7.150.11.4/10] fail.
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822] TRANSPORT DETECT EVENT[3]:Rank[7.150.11.4/15]: srcRank[7.150.11.4/15] connect destRank[7.150.11.4/9] fail.
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822] TRANSPORT DETECT EVENT[4]:Rank[7.150.11.4/15]: srcRank[7.150.11.4/15] connect destRank[7.150.11.4/8] fail.
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822] The error above was caused by a failure at the site in the cluster where the events happened.Please confirm whether the link between SRCRANK and DSTRANK or the DSTRANK process is healthy.
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822] NOTE: The detection results are only used to assist in locating the problem and may not represent the actual fault site in some complex scenarios. Please continue to analyze and confirm based on the current detected fault site
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]         Solution: 1. Check the rank service processes with other errors or no errors in the cluster.2. If this error is reported for all NPUs, check whether the time difference between the earliest and latest errors is greater than the connect timeout interval (120s by default). If so, adjust the timeout interval by using the HCCL_CONNECT_TIMEOUT environment variable.3. Check the connectivity of the communication link between nodes. (For example, run the 'hccn_tool -i $devid -tls -g' command to check the TLS status of each NPU).
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]         TraceBack (most recent call last):
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]         get device uuid failed, deviceId = 3, runtime result = 207000[FUNC:ReportCallError][FILE:log_inner.cpp][LINE:148]
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]         Getting socket times out. Reason: 
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822] TRANSPORT DETECT EVENT[1]:Rank[7.150.11.4/15]: srcRank[7.150.11.4/15] connect destRank[7.150.11.4/11] fail.
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822] TRANSPORT DETECT EVENT[2]:Rank[7.150.11.4/15]: srcRank[7.150.11.4/15] connect destRank[7.150.11.4/10] fail.
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822] TRANSPORT DETECT EVENT[3]:Rank[7.150.11.4/15]: srcRank[7.150.11.4/15] connect destRank[7.150.11.4/9] fail.
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822] TRANSPORT DETECT EVENT[4]:Rank[7.150.11.4/15]: srcRank[7.150.11.4/15] connect destRank[7.150.11.4/8] fail.
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822] The error above was caused by a failure at the site in the cluster where the events happened.Please confirm whether the link between SRCRANK and DSTRANK or the DSTRANK process is healthy.
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822] NOTE: The detection results are only used to assist in locating the problem and may not represent the actual fault site in some complex scenarios. Please continue to analyze and confirm based on the current detected fault site
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]         Nnopbase fails to invoke the HcclAllocComResourceByTiling function of the hccl module. ret = 9, comm = 0x4766d230.
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]         Check nnopbase::IndvHcclWrapper::GetInstance().HcclAllocComResourceByTiling(commHandle, stream, ((NnopbaseTilingData *)executor->args->tilingInfo.tilingData)->GetData(), &contextAddr) failed
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]         Check NnopbaseGetHcomResource(executor, stream) failed
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]         Check NnopbaseExecutorGetMc2Num(executor, stream, &argsAddr, &mc2Num) failed
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]         Check NnopbaseExecutorPrepareParamsExt(executor, stream) failed
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822]         Check NnopbaseRunWithWorkspace(executor, stream, workspace, workspaceSize) failed
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822] 
+(Worker_DP1_TP3_EP7 pid=643853) ERROR 02-26 15:40:18 [multiproc_executor.py:822] 
+(Worker_DP1_TP2_EP6 pid=643852) ERROR 02-26 15:40:18 [multiproc_executor.py:822] WorkerProc hit an exception.
+(Worker_DP1_TP2_EP6 pid=643852) ERROR 02-26 15:40:18 [multiproc_executor.py:822] Traceback (most recent call last):
+(Worker_DP1_TP2_EP6 pid=643852) ERROR 02-26 15:40:18 [multiproc_executor.py:822]   File "/opt/vllm/vllm/v1/executor/multiproc_executor.py", line 817, in worker_busy_loop
+(Worker_DP1_TP2_EP6 pid=643852) ERROR 02-26 15:40:18 [multiproc_executor.py:822]     output = func(*args, **kwargs)
+(Worker_DP1_TP2_EP6 pid=643852) ERROR 02-26 15:40:18 [multiproc_executor.py:822]              ^^^^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP2_EP6 pid=643852) ERROR 02-26 15:40:18 [multiproc_executor.py:822]   File "/data/w00961555/PanguInferPower-pangu_v2_dev/src/omni_npu/worker/npu_worker.py", line 214, in execute_dummy_batch
+(Worker_DP1_TP2_EP6 pid=643852) ERROR 02-26 15:40:18 [multiproc_executor.py:822]     self.model_runner._dummy_run(1, uniform_decode=True, force_attention=True)
+(Worker_DP1_TP2_EP6 pid=643852) ERROR 02-26 15:40:18 [multiproc_executor.py:822]   File "/usr/local/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 120, in decorate_context
+(Worker_DP1_TP2_EP6 pid=643852) ERROR 02-26 15:40:18 [multiproc_executor.py:822]     return func(*args, **kwargs)
+(Worker_DP1_TP2_EP6 pid=643852) ERROR 02-26 15:40:18 [multiproc_executor.py:822]            ^^^^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP2_EP6 pid=643852) ERROR 02-26 15:40:18 [multiproc_executor.py:822]   File "/data/w00961555/PanguInferPower-pangu_v2_dev/src/omni_npu/worker/npu_model_runner.py", line 474, in _dummy_run
+(Worker_DP1_TP2_EP6 pid=643852) ERROR 02-26 15:40:18 [multiproc_executor.py:822]     outputs = self.model(
+(Worker_DP1_TP2_EP6 pid=643852) ERROR 02-26 15:40:18 [multiproc_executor.py:822]               ^^^^^^^^^^^
+(Worker_DP1_TP2_EP6 pid=643852) ERROR 02-26 15:40:18 [multiproc_executor.py:822]   File "/usr/local/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+(Worker_DP1_TP2_EP6 pid=643852) ERROR 02-26 15:40:18 [multiproc_executor.py:822]     return self._call_impl(*args, **kwargs)
+(Worker_DP1_TP2_EP6 pid=643852) ERROR 02-26 15:40:18 [multiproc_executor.py:822]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP2_EP6 pid=643852) ERROR 02-26 15:40:18 [multiproc_executor.py:822]   File "/usr/local/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+(Worker_DP1_TP2_EP6 pid=643852) ERROR 02-26 15:40:18 [multiproc_executor.py:822]     return forward_call(*args, **kwargs)
+(Worker_DP1_TP2_EP6 pid=643852) ERROR 02-26 15:40:18 [multiproc_executor.py:822]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP2_EP6 pid=643852) ERROR 02-26 15:40:18 [multiproc_executor.py:822]   File "/data/w00961555/PanguInferPower-pangu_v2_dev/src/omni_npu/v1/models/pangu/pangu_v2_moe.py", line 616, in forward
+(Worker_DP1_TP2_EP6 pid=643852) ERROR 02-26 15:40:18 [multiproc_executor.py:822]     hidden_states = self.model(
+(Worker_DP1_TP2_EP6 pid=643852) ERROR 02-26 15:40:18 [multiproc_executor.py:822]                     ^^^^^^^^^^^
+(Worker_DP1_TP2_EP6 pid=643852) ERROR 02-26 15:40:18 [multiproc_executor.py:822]   File "/data/w00961555/PanguInferPower-pangu_v2_dev/src/omni_npu/compilation/decorators.py", line 67, in _new_call
+(Worker_DP1_TP2_EP6 pid=643852) ERROR 02-26 15:40:18 [multiproc_executor.py:822]     hit, retval = _bypass_prefill(self, *args, **kwargs)
+(Worker_DP1_TP2_EP6 pid=643852) ERROR 02-26 15:40:18 [multiproc_executor.py:822]                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP2_EP6 pid=643852) ERROR 02-26 15:40:18 [multiproc_executor.py:822]   File "/data/w00961555/PanguInferPower-pangu_v2_dev/src/omni_npu/compilation/decorators.py", line 61, in _bypass_prefill
+(Worker_DP1_TP2_EP6 pid=643852) ERROR 02-26 15:40:18 [multiproc_executor.py:822]     return True, self.forward(*args, **kwargs)
+(Worker_DP1_TP2_EP6 pid=643852) ERROR 02-26 15:40:18 [multiproc_executor.py:822]                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP2_EP6 pid=643852) ERROR 02-26 15:40:18 [multiproc_executor.py:822]   File "/data/w00961555/PanguInferPower-pangu_v2_dev/src/omni_npu/v1/models/pangu/pangu_v2_moe.py", line 519, in forward
+(Worker_DP1_TP2_EP6 pid=643852) ERROR 02-26 15:40:18 [multiproc_executor.py:822]     hidden_states = self.layers[i](
+(Worker_DP1_TP2_EP6 pid=643852) ERROR 02-26 15:40:18 [multiproc_executor.py:822]                     ^^^^^^^^^^^^^^^
+(Worker_DP1_TP2_EP6 pid=643852) ERROR 02-26 15:40:18 [multiproc_executor.py:822]   File "/usr/local/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+(Worker_DP1_TP2_EP6 pid=643852) ERROR 02-26 15:40:18 [multiproc_executor.py:822]     return self._call_impl(*args, **kwargs)
+(Worker_DP1_TP2_EP6 pid=643852) ERROR 02-26 15:40:18 [multiproc_executor.py:822]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP2_EP6 pid=643852) ERROR 02-26 15:40:18 [multiproc_executor.py:822]   File "/usr/local/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+(Worker_DP1_TP2_EP6 pid=643852) ERROR 02-26 15:40:18 [multiproc_executor.py:822]     return forward_call(*args, **kwargs)
+(Worker_DP1_TP2_EP6 pid=643852) ERROR 02-26 15:40:18 [multiproc_executor.py:822]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP2_EP6 pid=643852) ERROR 02-26 15:40:18 [multiproc_executor.py:822]   File "/data/w00961555/PanguInferPower-pangu_v2_dev/src/omni_npu/v1/models/pangu/pangu_v2_moe.py", line 413, in forward
+(Worker_DP1_TP2_EP6 pid=643852) ERROR 02-26 15:40:18 [multiproc_executor.py:822]     hidden_states = self.mlp(
+(Worker_DP1_TP2_EP6 pid=643852) ERROR 02-26 15:40:18 [multiproc_executor.py:822]                     ^^^^^^^^^
+(Worker_DP1_TP2_EP6 pid=643852) ERROR 02-26 15:40:18 [multiproc_executor.py:822]   File "/usr/local/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+(Worker_DP1_TP2_EP6 pid=643852) ERROR 02-26 15:40:18 [multiproc_executor.py:822]     return self._call_impl(*args, **kwargs)
+(Worker_DP1_TP2_EP6 pid=643852) ERROR 02-26 15:40:18 [multiproc_executor.py:822]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP2_EP6 pid=643852) ERROR 02-26 15:40:18 [multiproc_executor.py:822]   File "/usr/local/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+(Worker_DP1_TP2_EP6 pid=643852) ERROR 02-26 15:40:18 [multiproc_executor.py:822]     return forward_call(*args, **kwargs)
+(Worker_DP1_TP2_EP6 pid=643852) ERROR 02-26 15:40:18 [multiproc_executor.py:822]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP2_EP6 pid=643852) ERROR 02-26 15:40:18 [multiproc_executor.py:822]   File "/data/w00961555/PanguInferPower-pangu_v2_dev/src/omni_npu/v1/models/pangu/pangu_v2_moe.py", line 244, in forward
+(Worker_DP1_TP2_EP6 pid=643852) ERROR 02-26 15:40:18 [multiproc_executor.py:822]     shared_output, final_hidden_states = self.experts(
+(Worker_DP1_TP2_EP6 pid=643852) ERROR 02-26 15:40:18 [multiproc_executor.py:822]                                          ^^^^^^^^^^^^^
+(Worker_DP1_TP2_EP6 pid=643852) ERROR 02-26 15:40:18 [multiproc_executor.py:822]   File "/usr/local/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+(Worker_DP1_TP2_EP6 pid=643852) ERROR 02-26 15:40:18 [multiproc_executor.py:822]     return self._call_impl(*args, **kwargs)
+(Worker_DP1_TP2_EP6 pid=643852) ERROR 02-26 15:40:18 [multiproc_executor.py:822]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP2_EP6 pid=643852) ERROR 02-26 15:40:18 [multiproc_executor.py:822]   File "/usr/local/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+(Worker_DP1_TP2_EP6 pid=643852) ERROR 02-26 15:40:18 [multiproc_executor.py:822]     return forward_call(*args, **kwargs)
