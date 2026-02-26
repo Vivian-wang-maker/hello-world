@@ -1,0 +1,29 @@
+ecutor.py:822]   File "/usr/local/lib/python3.12/site-packages/torch/_ops.py", line 1255, in __call__
+(Worker_DP3_EP3 pid=615610) ERROR 02-26 12:02:19 [multiproc_executor.py:822]     return self._op(*args, **kwargs)
+(Worker_DP3_EP3 pid=615610) ERROR 02-26 12:02:19 [multiproc_executor.py:822]            ^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_DP3_EP3 pid=615610) ERROR 02-26 12:02:19 [multiproc_executor.py:822] RuntimeError: operator():build/CMakeFiles/torch_npu.dir/compiler_depend.ts:162 NPU function error: call aclnnMoeDistributeDispatchV4 failed, error code is 561000
+(Worker_DP3_EP3 pid=615610) ERROR 02-26 12:02:19 [multiproc_executor.py:822] [ERROR] 2026-02-26-12:02:19 (PID:615610, Device:0, RankID:-1) ERR00100 PTA call acl api failed.
+(Worker_DP3_EP3 pid=615610) ERROR 02-26 12:02:19 [multiproc_executor.py:822] [PID: 615610] 2026-02-26-12:02:19.517.932 Communication_Error_Get_Socket(EI0006): Getting socket times out. Reason: 
+(Worker_DP3_EP3 pid=615610) ERROR 02-26 12:02:19 [multiproc_executor.py:822] TRANSPORT DETECT EVENT[1]:Rank[7.150.11.4/11]: srcRank[7.150.11.4/11] connect destRank[7.150.11.4/8] fail.
+(Worker_DP3_EP3 pid=615610) ERROR 02-26 12:02:19 [multiproc_executor.py:822] The error above was caused by a failure at the site in the cluster where the events happened.Please confirm whether the link between SRCRANK and DSTRANK or the DSTRANK process is healthy.
+(Worker_DP3_EP3 pid=615610) ERROR 02-26 12:02:19 [multiproc_executor.py:822] NOTE: The detection results are only used to assist in locating the problem and may not represent the actual fault site in some complex scenarios. Please continue to analyze and confirm based on the current detected fault site
+(Worker_DP3_EP3 pid=615610) ERROR 02-26 12:02:19 [multiproc_executor.py:822]         Solution: 1. Check the rank service processes with other errors or no errors in the cluster.2. If this error is reported for all NPUs, check whether the time difference between the earliest and latest errors is greater than the connect timeout interval (120s by default). If so, adjust the timeout interval by using the HCCL_CONNECT_TIMEOUT environment variable.3. Check the connectivity of the communication link between nodes. (For example, run the 'hccn_tool -i $devid -tls -g' command to check the TLS status of each NPU).
+(Worker_DP3_EP3 pid=615610) ERROR 02-26 12:02:19 [multiproc_executor.py:822]         TraceBack (most recent call last):
+(Worker_DP3_EP3 pid=615610) ERROR 02-26 12:02:19 [multiproc_executor.py:822]         get device uuid failed, deviceId = 0, runtime result = 207000[FUNC:ReportCallError][FILE:log_inner.cpp][LINE:148]
+(Worker_DP3_EP3 pid=615610) ERROR 02-26 12:02:19 [multiproc_executor.py:822]         Getting socket times out. Reason: 
+(Worker_DP3_EP3 pid=615610) ERROR 02-26 12:02:19 [multiproc_executor.py:822] TRANSPORT DETECT EVENT[1]:Rank[7.150.11.4/11]: srcRank[7.150.11.4/11] connect destRank[7.150.11.4/8] fail.
+(Worker_DP3_EP3 pid=615610) ERROR 02-26 12:02:19 [multiproc_executor.py:822] The error above was caused by a failure at the site in the cluster where the events happened.Please confirm whether the link between SRCRANK and DSTRANK or the DSTRANK process is healthy.
+(Worker_DP3_EP3 pid=615610) ERROR 02-26 12:02:19 [multiproc_executor.py:822] NOTE: The detection results are only used to assist in locating the problem and may not represent the actual fault site in some complex scenarios. Please continue to analyze and confirm based on the current detected fault site
+(Worker_DP3_EP3 pid=615610) ERROR 02-26 12:02:19 [multiproc_executor.py:822]         Nnopbase fails to invoke the HcclAllocComResourceByTiling function of the hccl module. ret = 9, comm = 0x7ee7c140.
+(Worker_DP3_EP3 pid=615610) ERROR 02-26 12:02:19 [multiproc_executor.py:822]         Check nnopbase::IndvHcclWrapper::GetInstance().HcclAllocComResourceByTiling(commHandle, stream, ((NnopbaseTilingData *)executor->args->tilingInfo.tilingData)->GetData(), &contextAddr) failed
+(Worker_DP3_EP3 pid=615610) ERROR 02-26 12:02:19 [multiproc_executor.py:822]         Check NnopbaseGetHcomResource(executor, stream) failed
+(Worker_DP3_EP3 pid=615610) ERROR 02-26 12:02:19 [multiproc_executor.py:822]         Check NnopbaseExecutorGetMc2Num(executor, stream, &argsAddr, &mc2Num) failed
+(Worker_DP3_EP3 pid=615610) ERROR 02-26 12:02:19 [multiproc_executor.py:822]         Check NnopbaseExecutorPrepareParamsExt(executor, stream) failed
+(Worker_DP3_EP3 pid=615610) ERROR 02-26 12:02:19 [multiproc_executor.py:822]         Check NnopbaseRunWithWorkspace(executor, stream, workspace, workspaceSize) failed
+(Worker_DP3_EP3 pid=615610) ERROR 02-26 12:02:19 [multiproc_executor.py:822] 
+(Worker_DP3_EP3 pid=615610) ERROR 02-26 12:02:19 [multiproc_executor.py:822] Traceback (most recent call last):
+(Worker_DP3_EP3 pid=615610) ERROR 02-26 12:02:19 [multiproc_executor.py:822]   File "/opt/vllm/vllm/v1/executor/multiproc_executor.py", line 817, in worker_busy_loop
+(Worker_DP3_EP3 pid=615610) ERROR 02-26 12:02:19 [multiproc_executor.py:822]     output = func(*args, **kwargs)
+(Worker_DP3_EP3 pid=615610) ERROR 02-26 12:02:19 [multiproc_executor.py:822]              ^^^^^^^^^^^^^^^^^^^^^
+(Worker_DP3_EP3 pid=615610) ERROR 02-26 12:02:19 [multiproc_executor.py:822]   File "/data/w00961555/PanguInferPower-pangu_v2_dev/src/omni_npu/worker/npu_worker.py", line 214, in execute_dummy_batch
+(Worker_DP3_EP3 pid=615610) ERROR 02-26 12:02:19 [multiproc_executor.py:822]
